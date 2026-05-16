@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="TinyLiveness face liveness API">
+  <rect width="1200" height="630" fill="#0b1220"/>
+  <rect x="70" y="70" width="1060" height="490" rx="36" fill="#111827"/>
+  <path d="M600 116 804 208v142c0 123-78 220-204 255-126-35-204-132-204-255V208l204-92Z" fill="#16a34a"/>
+  <path d="M478 335c31-63 72-95 122-95s91 32 122 95c-31 63-72 95-122 95s-91-32-122-95Z" fill="#f8fafc"/>
+  <circle cx="600" cy="335" r="58" fill="#0b1220"/>
+  <circle cx="625" cy="310" r="18" fill="#f8fafc"/>
+  <text x="90" y="150" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700">TinyLiveness</text>
+  <text x="90" y="214" fill="#bbf7d0" font-family="Arial, Helvetica, sans-serif" font-size="30">Open-source face liveness detection API</text>
+  <text x="90" y="505" fill="#e5e7eb" font-family="Arial, Helvetica, sans-serif" font-size="30">Passive RGB live/spoof checks for apps, kiosks, and onboarding.</text>
+</svg>
