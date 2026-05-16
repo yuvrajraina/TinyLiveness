@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tinyliveness"
+version = "0.1.0"
+description = "Tiny CPU/mobile face liveness detection toolkit with PyTorch and ONNX Runtime support."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "TinyLiveness contributors" }]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.23",
+    "pillow>=10.0",
+]
+keywords = [
+    "face-liveness",
+    "face-anti-spoofing",
+    "onnx",
+    "pytorch",
+    "mobile-ai",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.scripts]
+tinyliveness = "tinyliveness.cli:main"
+
+[project.optional-dependencies]
+onnx = [
+    "onnx>=1.14",
+    "onnxruntime>=1.16",
+]
+torch = [
+    "torch>=2.0",
+]
+training = [
+    "gdown>=6.0",
+    "onnx>=1.14",
+    "onnxruntime>=1.16",
+    "opencv-python>=4.8",
+    "torch>=2.0",
+    "torchvision>=0.15",
+    "tqdm>=4.66",
+]
+dev = [
+    "build>=1.2",
+    "pytest>=8.0",
+    "twine>=5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yuvrajraina/TinyLiveness"
+Repository = "https://github.com/yuvrajraina/TinyLiveness"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+tinyliveness = [
+    "assets/*.json",
+    "assets/*.onnx",
+    "py.typed",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

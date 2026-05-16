@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TinyLiveness | Stats</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html">TinyLiveness</a>
+      <nav aria-label="Primary">
+        <a href="./index.html">Model</a>
+        <a class="active" href="./stats.html">Stats</a>
+        <a href="./usage.html">Usage</a>
+        <a href="./api.html">API</a>
+        <a class="nav-action" href="./test.html">Test it now for free</a>
+      </nav>
+    </header>
+
+    <main class="shell doc-layout">
+      <section class="doc-hero">
+        <span class="eyebrow"><strong>AI powered</strong> stats</span>
+        <h1>Strict liveness metrics, reported honestly.</h1>
+        <p>
+          TinyLiveness currently ships one FP32 ONNX release model. The website
+          and backend use the stricter APCER 1% policy by default.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>APCER 1% release variant</h2>
+          <p>
+            Metrics below are from the corrected 400-image test slice:
+            200 live samples and 200 spoof samples.
+          </p>
+        </div>
+        <dl class="stat-grid">
+          <div><dt>ROC AUC</dt><dd>0.999325</dd></div>
+          <div><dt>PR AUC</dt><dd>0.999332</dd></div>
+          <div><dt>Accuracy</dt><dd>98.25%</dd></div>
+          <div><dt>APCER</dt><dd>1.00%</dd></div>
+          <div><dt>BPCER</dt><dd>2.50%</dd></div>
+          <div><dt>ACER</dt><dd>1.75%</dd></div>
+          <div><dt>BPCER100</dt><dd>3.00%</dd></div>
+          <div><dt>Threshold</dt><dd>0.990000</dd></div>
+        </dl>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Model size and runtime</h2>
+          <p>
+            The model is intended for CPU-friendly API deployments and compact mobile
+            pipelines. The backend route loads FP32 ONNX with CPU execution.
+          </p>
+        </div>
+        <dl class="stat-grid compact">
+          <div><dt>FP32 ONNX size</dt><dd>15.296 MB</dd></div>
+          <div><dt>Synthetic CPU latency</dt><dd>5.619 ms/image</dd></div>
+          <div><dt>Input tensor</dt><dd>Nx3x224x224</dd></div>
+          <div><dt>Normalization</dt><dd>ImageNet</dd></div>
+        </dl>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Production caveat</h2>
+          <p>
+            Do not treat this as a universal production guarantee. The APCER 1%
+            policy is now set to 0.99 and should be validated again on a larger
+            untouched and cross-domain test set before production claims.
+          </p>
+        </div>
+        <ul class="feature-list">
+          <li>Keep threshold tuning on train/dev data in future runs</li>
+          <li>Evaluate target cameras, screens, print media, and lighting</li>
+          <li>Report subgroup APCER/BPCER when metadata exists</li>
+          <li>Use manual review or step-up verification for uncertain cases</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      MIT licensed. Anyone can use, modify, distribute, and ship TinyLiveness with the license notice.
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

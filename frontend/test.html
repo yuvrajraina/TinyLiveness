@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TinyLiveness | Test It Now</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html">TinyLiveness</a>
+      <nav aria-label="Primary">
+        <a href="./index.html">Model</a>
+        <a href="./stats.html">Stats</a>
+        <a href="./usage.html">Usage</a>
+        <a href="./api.html">API</a>
+        <a class="nav-action active" href="./test.html">Test it now for free</a>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="workspace" aria-labelledby="title">
+        <div class="topbar">
+          <div>
+            <h1 id="title">Test it now for free</h1>
+            <p>
+              Upload one face image or capture a webcam frame. This page is API-only:
+              the model runs on your configured TinyLiveness backend.
+            </p>
+          </div>
+          <span class="status" id="modelStatus">Ready</span>
+        </div>
+
+        <section class="model-panel" aria-live="polite">
+          <div>
+            <span class="eyebrow"><strong>AI powered</strong> backend model</span>
+            <h2 id="servedModelName">Checking API model...</h2>
+          </div>
+          <dl>
+            <div><dt>Status</dt><dd id="servedModelStatus">Loading</dd></div>
+            <div><dt>Policy</dt><dd id="servedModelPolicy">-</dd></div>
+            <div><dt>Threshold</dt><dd id="servedModelThreshold">-</dd></div>
+          </dl>
+        </section>
+
+        <div class="tester-grid">
+          <section class="upload-panel" aria-label="Input frame">
+            <div class="preview-shell">
+              <video id="videoPreview" class="preview video-preview" playsinline muted></video>
+              <canvas id="inputCanvas" class="preview" width="224" height="224"></canvas>
+            </div>
+
+            <label class="upload">
+              <span>Face image</span>
+              <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" />
+            </label>
+          </section>
+
+          <section class="control-panel" aria-label="Run liveness check">
+            <label class="field">
+              <span>API URL</span>
+              <input
+                id="apiUrl"
+                type="url"
+                value="http://127.0.0.1:8000/api/liveness/predict/"
+                spellcheck="false"
+              />
+            </label>
+
+            <div class="actions">
+              <button class="button secondary" type="button" id="startCamera">Camera</button>
+              <button class="button secondary" type="button" id="captureFrame" disabled>Capture</button>
+              <button class="button" type="button" id="runCheck" disabled>Run liveness</button>
+            </div>
+
+            <p class="hint">
+              For a hosted Netlify site, point this field to your deployed backend URL.
+              The backend must allow the Netlify origin through CORS.
+            </p>
+
+            <div class="score-card">
+              <span class="eyebrow"><strong>AI powered</strong> result</span>
+              <strong id="scoreValue">--</strong>
+              <div class="score-track"><span id="scoreBar"></span></div>
+            </div>
+          </section>
+        </div>
+
+        <section class="result" aria-live="polite">
+          <div class="result-head">
+            <h2>Result</h2>
+            <span id="decisionValue">Waiting</span>
+          </div>
+          <dl>
+            <div><dt>Live probability</dt><dd id="scoreReadout">-</dd></div>
+            <div><dt>Spoof probability</dt><dd id="spoofReadout">-</dd></div>
+            <div><dt>Threshold</dt><dd id="thresholdValue">-</dd></div>
+            <div><dt>Processing</dt><dd id="processingMs">-</dd></div>
+          </dl>
+          <pre id="rawResult"></pre>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      MIT licensed. Anyone can use, modify, distribute, and ship TinyLiveness with the license notice.
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

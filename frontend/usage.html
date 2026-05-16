@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TinyLiveness | Usage</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html">TinyLiveness</a>
+      <nav aria-label="Primary">
+        <a href="./index.html">Model</a>
+        <a href="./stats.html">Stats</a>
+        <a class="active" href="./usage.html">Usage</a>
+        <a href="./api.html">API</a>
+        <a class="nav-action" href="./test.html">Test it now for free</a>
+      </nav>
+    </header>
+
+    <main class="shell doc-layout">
+      <section class="doc-hero">
+        <span class="eyebrow"><strong>AI powered</strong> usage</span>
+        <h1>Run TinyLiveness as a simple API.</h1>
+        <p>
+          The public website is API-only. The model runs in your Python backend,
+          and the website sends one cropped frame to that endpoint.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Install with pip</h2>
+          <p>
+            Install the TinyLiveness GitHub release/tag directly. The package includes
+            the APCER 1% FP32 ONNX model and JSON decision policy.
+          </p>
+        </div>
+        <pre><code>pip install "tinyliveness[onnx] @ git+https://github.com/yuvrajraina/TinyLiveness.git@v0.1.0"</code></pre>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Use the bundled model</h2>
+          <p>
+            The helper below loads the packaged ONNX model and policy, so applications
+            do not need to hardcode checkpoint paths after a pip install.
+          </p>
+        </div>
+        <pre><code>from tinyliveness import create_default_onnx_detector
+
+detector = create_default_onnx_detector()
+result = detector.predict_image(aligned_face_rgb_224)
+print(result.live_probability, result.decision)</code></pre>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Start the API</h2>
+          <p>
+            To run the included Django demo API, use a repo checkout. The backend
+            defaults to the APCER 1% model and falls back to bundled package artifacts
+            if local checkpoint files are not present.
+          </p>
+        </div>
+        <pre><code>git clone https://github.com/yuvrajraina/TinyLiveness.git
+cd TinyLiveness
+pip install -r backend/requirements.txt
+python backend/manage.py runserver</code></pre>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Prepare the input</h2>
+          <p>
+            TinyLiveness expects an aligned RGB face crop. In production, your app should
+            detect the face, align/crop it, resize to 224x224, and then send it to the API.
+            The demo route will center-crop and resize uploaded images, but a real face
+            alignment step gives better behavior.
+          </p>
+        </div>
+        <div class="flow">
+          <div>Camera frame</div>
+          <div>Face detect</div>
+          <div>Align/crop</div>
+          <div>Liveness API</div>
+          <div>Face match or step-up</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Call from curl</h2>
+          <p>Send one image as multipart field `image`.</p>
+        </div>
+        <pre><code>curl -X POST http://127.0.0.1:8000/api/liveness/predict/ \
+  -F image=@face.jpg</code></pre>
+      </section>
+
+      <section class="section split">
+        <div>
+          <span class="eyebrow"><strong>MIT</strong> license</span>
+          <h2>Use it in your own project</h2>
+          <p>
+            TinyLiveness is MIT licensed. You can use the code and included release
+            artifacts in personal, research, internal, or commercial projects, subject
+            to the MIT license notice.
+          </p>
+        </div>
+        <ul class="feature-list">
+          <li>Use in apps and APIs</li>
+          <li>Modify for your camera pipeline</li>
+          <li>Redistribute with the license notice</li>
+          <li>Validate before production security claims</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      MIT licensed. Anyone can use, modify, distribute, and ship TinyLiveness with the license notice.
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

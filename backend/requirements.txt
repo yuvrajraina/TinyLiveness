@@ -1,0 +1,13 @@
+# Local TinyLiveness package with ONNX runtime support.
+-e ..[onnx]
+
+# Demo/API backend.
+django>=5.0
+gunicorn>=22
+
+# Image loading/preprocessing for uploaded files.
+pillow>=10.0
+
+# Inference/runtime.
+numpy>=1.23
+onnxruntime>=1.16

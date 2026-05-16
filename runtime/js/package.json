@@ -1,0 +1,9 @@
+{
+  "name": "tinyliveness-onnx-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "onnxruntime-web": "^1.20.1"
+  }
+}

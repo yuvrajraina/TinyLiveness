@@ -1,0 +1,31 @@
+{
+  "variant": "tinyliveness_main_apcer1_224",
+  "model": "checkpoints/tinyliveness_main_apcer1_224.onnx",
+  "threshold_policy": "main_apcer1_threshold",
+  "reject_threshold": 0.99,
+  "accept_threshold": 0.99,
+  "decision_policy": {
+    "reject_threshold": 0.99,
+    "accept_threshold": 0.99,
+    "threshold_policy": "main_apcer1_threshold",
+    "calibration_split": "test_boundary_diagnostic",
+    "live_label": 1
+  },
+  "test400_result": {
+    "threshold": 0.99,
+    "samples": 400,
+    "live_samples": 200,
+    "spoof_samples": 200,
+    "roc_auc": 0.999325,
+    "pr_auc": 0.999332,
+    "accuracy": 0.9825,
+    "apcer": 0.01,
+    "bpcer": 0.025,
+    "acer": 0.0175,
+    "bpcer100": 0.03,
+    "false_accepts": 2,
+    "false_rejects": 5,
+    "metrics_source": "user-confirmed APCER 1 release metrics"
+  },
+  "warning": "APCER 1% policy is the single release policy. Revalidate on untouched/cross-domain data before production claims."
+}

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TinyLiveness | API</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html">TinyLiveness</a>
+      <nav aria-label="Primary">
+        <a href="./index.html">Model</a>
+        <a href="./stats.html">Stats</a>
+        <a href="./usage.html">Usage</a>
+        <a class="active" href="./api.html">API</a>
+        <a class="nav-action" href="./test.html">Test it now for free</a>
+      </nav>
+    </header>
+
+    <main class="shell doc-layout">
+      <section class="doc-hero">
+        <span class="eyebrow"><strong>AI powered</strong> API</span>
+        <h1>A small backend route for a strict liveness signal.</h1>
+        <p>
+          The demo backend is intentionally plain: upload a face image, get a live
+          probability, spoof probability, decision, thresholds, and timing metadata.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Endpoints</h2>
+          <p>Use `model/` for health and policy details, and `predict/` for inference.</p>
+        </div>
+        <div class="endpoint-grid">
+          <div class="endpoint-card">
+            <h3>Model info</h3>
+            <pre><code>GET /api/liveness/model/</code></pre>
+          </div>
+          <div class="endpoint-card">
+            <h3>Predict</h3>
+            <pre><code>POST /api/liveness/predict/
+multipart field: image</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Example response</h2>
+          <p>Applications should use `decision` and keep the score for logs/debugging.</p>
+        </div>
+        <pre><code>{
+  "live_probability": 0.126435,
+  "spoof_probability": 0.873565,
+  "decision": "spoof",
+  "is_live": false,
+  "is_spoof": true,
+  "needs_manual_review": false,
+  "reject_threshold": 0.99,
+  "accept_threshold": 0.99,
+  "threshold_policy": "main_apcer1_threshold",
+  "model_variant": "apcer1",
+  "processing_ms": 12.46
+}</code></pre>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Short sequence support</h2>
+          <p>
+            For a small burst of webcam frames, send repeated `frames` fields and set
+            `aggregation` to `mean`, `median`, `min`, or `p10`. Stricter aggregations
+            like `min` and `p10` make one suspicious frame lower the final score.
+          </p>
+        </div>
+        <pre><code>curl -X POST http://127.0.0.1:8000/api/liveness/predict/ \
+  -F frames=@frame1.jpg \
+  -F frames=@frame2.jpg \
+  -F aggregation=p10</code></pre>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Environment settings</h2>
+          <p>Override paths, rate limits, and website access for your deployment.</p>
+        </div>
+        <dl class="stat-grid compact">
+          <div><dt>TINYLIVENESS_MODEL_PATH</dt><dd>Custom ONNX path</dd></div>
+          <div><dt>TINYLIVENESS_POLICY_PATH</dt><dd>Custom JSON policy</dd></div>
+          <div><dt>TINYLIVENESS_RATE_LIMIT_SECONDS</dt><dd>Per-client delay</dd></div>
+          <div><dt>TINYLIVENESS_CORS_ORIGIN</dt><dd>Allowed website origin</dd></div>
+          <div><dt>DJANGO_ALLOWED_HOSTS</dt><dd>Host allowlist</dd></div>
+          <div><dt>DJANGO_DEBUG</dt><dd>Set 0 in production</dd></div>
+        </dl>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      MIT licensed. Anyone can use, modify, distribute, and ship TinyLiveness with the license notice.
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

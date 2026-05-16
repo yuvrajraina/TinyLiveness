@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TinyLiveness is an MIT-licensed passive RGB face liveness model for API-based live/spoof checks."
+    />
+    <title>TinyLiveness | Model</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html">TinyLiveness</a>
+      <nav aria-label="Primary">
+        <a class="active" href="./index.html">Model</a>
+        <a href="./stats.html">Stats</a>
+        <a href="./usage.html">Usage</a>
+        <a href="./api.html">API</a>
+        <a class="nav-action" href="./test.html">Test it now for free</a>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow"><strong>AI powered</strong> liveness API</span>
+          <h1><strong>AI powered</strong> face liveness for apps that need spoof checks.</h1>
+          <p>
+            TinyLiveness is a lightweight passive RGB model that answers one question:
+            does this aligned face crop look like a live person, or a presentation attack
+            such as a photo, video, or screen replay?
+          </p>
+          <div class="actions">
+            <a class="button" href="./test.html">Test it now for free</a>
+            <a class="button secondary" href="./usage.html">Read usage</a>
+          </div>
+        </div>
+
+        <div class="model-visual" aria-label="Model summary">
+          <div class="signal-grid">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="visual-readout">
+            <strong>One face crop in. Live/spoof signal out.</strong>
+            <span>Designed for API workflows, kiosk checks, onboarding, and step-up verification.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="eyebrow"><strong>AI powered</strong> model</span>
+          <h2>The API prediction model is the APCER 1% variant</h2>
+          <p>
+            The default public API route uses `tinyliveness_main_apcer1_224.onnx`.
+            This is the strictest release policy and is meant to minimize spoof
+            acceptance, even when that creates more legitimate-user friction.
+          </p>
+        </div>
+
+        <dl class="stat-grid">
+          <div>
+            <dt>Model</dt>
+            <dd>EfficientNet-B0</dd>
+          </div>
+          <div>
+            <dt>Input</dt>
+            <dd>224 RGB</dd>
+          </div>
+          <div>
+            <dt>Runtime</dt>
+            <dd>ONNX API</dd>
+          </div>
+          <div>
+            <dt>Policy</dt>
+            <dd>APCER 1%</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="section split">
+        <div>
+          <span class="eyebrow"><strong>Open source</strong> license</span>
+          <h2>MIT licensed so anyone can use it</h2>
+          <p>
+            TinyLiveness is released under the MIT License. You can use it, modify it,
+            copy it, distribute it, and build commercial or non-commercial applications
+            with it, as long as you keep the MIT copyright and license notice.
+          </p>
+        </div>
+        <ul class="feature-list">
+          <li>MIT License</li>
+          <li>Python backend route included</li>
+          <li>JavaScript website tester included</li>
+          <li>FP32 ONNX model artifacts included</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="eyebrow"><strong>AI powered</strong> boundaries</span>
+          <h2>What TinyLiveness is, and what it is not</h2>
+          <p>
+            This is a passive single-frame RGB liveness signal. It should be combined
+            with face detection, alignment, identity matching, rate limits, logging,
+            manual review, and product-specific fraud controls.
+          </p>
+        </div>
+        <div class="comparison-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Use case</th>
+                <th>Good fit?</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Open-source liveness API demo</td>
+                <td>Yes</td>
+                <td>Use the included Django endpoint and APCER 1% policy by default.</td>
+              </tr>
+              <tr>
+                <td>Kiosk or onboarding pre-check</td>
+                <td>Yes, with controls</td>
+                <td>Run the model before face matching and add retry/manual-review paths.</td>
+              </tr>
+              <tr>
+                <td>Standalone fraud decision</td>
+                <td>No</td>
+                <td>Liveness should be one security signal, not the full decision engine.</td>
+              </tr>
+              <tr>
+                <td>Certified PAD compliance</td>
+                <td>No</td>
+                <td>Formal PAD claims require lab testing and broader datasets.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      MIT licensed. Anyone can use, modify, distribute, and ship TinyLiveness with the license notice.
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

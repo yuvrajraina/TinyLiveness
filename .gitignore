@@ -1,0 +1,35 @@
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+node_modules/
+
+# Local datasets and experiment outputs.
+data/
+runs/
+reports/
+*.pt
+*.pth
+*.onnx
+*.npz
+*.log
+db.sqlite3
+
+# Keep only the Git-facing release artifacts in checkpoints/.
+checkpoints/*
+!checkpoints/tinyliveness_main_apcer1_224.onnx
+!checkpoints/decision_policy_main_apcer1_224.json
+!checkpoints/thresholds_main_apcer1_224.json
+!src/tinyliveness/assets/
+!src/tinyliveness/assets/*.json
+!src/tinyliveness/assets/*.onnx
+
+# Netlify/Vite generated assets.
+frontend/dist/
+frontend/node_modules/

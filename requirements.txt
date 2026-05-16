@@ -1,0 +1,15 @@
+# Local package.
+-e .
+
+# Inference/runtime.
+numpy>=1.23
+pillow>=10.0
+torch>=2.0
+torchvision>=0.15
+
+# Training, evaluation, and model export.
+gdown>=6.0
+onnx>=1.14
+onnxruntime>=1.16
+opencv-python>=4.8
+tqdm>=4.66
