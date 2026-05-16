@@ -131,3 +131,22 @@ We are still undergoing the follwing steps:
 - Validate on a larger untouched holdout.
 - Report subgroup APCER/BPCER/ACER by source, device, spoof type, lighting, and
   environment when metadata exists.
+
+## Comparison
+
+| Model | Public / reported benchmark | Size / Params | TinyLiveness numeric comparison |
+| --- | ---: | ---: | --- |
+| TinyLiveness | Accuracy 98.25%, AUC 0.999325, APCER 1.00%, BPCER 2.50%, ACER 1.75% | 4.00 M params | Baseline release model |
+| MN3_large | AUC 0.998, APCER 0.69%, BPCER 6.92%, ACER 3.80% | 3.02M params | +0.1325 AUC points, 4.42 pp lower BPCER, 2.05 pp lower ACER, 53.95% lower ACER |
+| AENet | AUC 0.999, APCER 0.23%, BPCER 6.27%, ACER 3.25% | 11.22M params | +0.0325 AUC points, 3.77 pp lower BPCER, 1.50 pp lower ACER, 46.15% lower ACER |
+| MN3_large_075 | AUC 0.997, APCER 1.21%, BPCER 5.44%, ACER 3.32% | 1.86M params | +0.2325 AUC points, 0.21 pp lower APCER, 2.94 pp lower BPCER, 1.57 pp lower ACER, 47.29% lower ACER |
+| MN3_small | AUC 0.994, APCER 1.47%, BPCER 8.63%, ACER 5.05% | 1.00M params | +0.5325 AUC points, 0.47 pp lower APCER, 6.13 pp lower BPCER, 3.30 pp lower ACER, 65.35% lower ACER |
+| MN3_small_075 | AUC 0.991, APCER 1.62%, BPCER 10.55%, ACER 6.09% | 0.60M params | +0.8325 AUC points, 0.62 pp lower APCER, 8.05 pp lower BPCER, 4.34 pp lower ACER, 71.26% lower ACER |
+| MiniFASNetV1 / V2 | APK model reports FPR 1e-5 and TPR 97.8% | 0.414M / 0.435M params | Not directly ACER-comparable, but TinyLiveness reports 98.25% accuracy and 0.999325 AUC on its release slice |
+
+TinyLiveness metrics are from the corrected, balanced 400-image averaged test slice:
+200 live and 200 spoof images, sampled from a larger 4,000-image live/spoof dataset
+and evaluated across 10 separate averaged windows.
+
+These numbers are useful for the current repo release, but they are not a replacement
+for a larger untouched holdout, cross-domain evaluation, or production camera testing.
