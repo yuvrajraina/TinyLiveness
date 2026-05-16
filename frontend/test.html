@@ -56,26 +56,11 @@
           </section>
 
           <section class="control-panel" aria-label="Run liveness check">
-            <label class="field">
-              <span>API URL</span>
-              <input
-                id="apiUrl"
-                type="url"
-                value="http://127.0.0.1:8000/api/liveness/predict/"
-                spellcheck="false"
-              />
-            </label>
-
             <div class="actions">
               <button class="button secondary" type="button" id="startCamera">Camera</button>
               <button class="button secondary" type="button" id="captureFrame" disabled>Capture</button>
               <button class="button" type="button" id="runCheck" disabled>Run liveness</button>
             </div>
-
-            <p class="hint">
-              For a hosted Netlify site, point this field to your deployed backend URL.
-              The backend must allow the Netlify origin through CORS.
-            </p>
 
             <div class="score-card">
               <span class="eyebrow"><strong>AI powered</strong> result</span>

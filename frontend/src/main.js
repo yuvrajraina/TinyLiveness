@@ -17,7 +17,6 @@ const tester = {
   startCamera: document.querySelector("#startCamera"),
   captureFrame: document.querySelector("#captureFrame"),
   runCheck: document.querySelector("#runCheck"),
-  apiUrl: document.querySelector("#apiUrl"),
   scoreValue: document.querySelector("#scoreValue"),
   scoreReadout: document.querySelector("#scoreReadout"),
   spoofReadout: document.querySelector("#spoofReadout"),
@@ -36,7 +35,6 @@ markActiveNav();
 
 if (tester.canvas) {
   context = tester.canvas.getContext("2d", { willReadFrequently: true });
-  tester.apiUrl.value = localStorage.getItem("tinylivenessApiUrl") || DEFAULT_API_URL;
   drawPlaceholder();
   bindTester();
   loadModelInfo();
@@ -110,10 +108,6 @@ function bindTester() {
     }
   });
 
-  tester.apiUrl.addEventListener("change", () => {
-    localStorage.setItem("tinylivenessApiUrl", tester.apiUrl.value.trim());
-    loadModelInfo();
-  });
 }
 
 function setStatus(message, isError = false) {
@@ -181,10 +175,7 @@ async function canvasBlob() {
 }
 
 function modelInfoUrl() {
-  const endpoint = tester.apiUrl.value.trim();
-  if (!endpoint) {
-    return "";
-  }
+  const endpoint = DEFAULT_API_URL;
   const url = new URL(endpoint);
   url.pathname = url.pathname.replace(/\/predict\/?$/, "/model/");
   return url.toString();
@@ -217,11 +208,7 @@ async function loadModelInfo() {
 }
 
 async function callBackend() {
-  const endpoint = tester.apiUrl.value.trim();
-  if (!endpoint) {
-    throw new Error("Set the API URL first.");
-  }
-  localStorage.setItem("tinylivenessApiUrl", endpoint);
+  const endpoint = DEFAULT_API_URL;
 
   const formData = new FormData();
   formData.append("image", await canvasBlob(), "tinyliveness-frame.jpg");
