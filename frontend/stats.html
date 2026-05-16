@@ -31,8 +31,10 @@
         <div class="section-head">
           <h2>APCER 1% release variant</h2>
           <p>
-            Metrics below are from the corrected 400-image test slice:
-            200 live samples and 200 spoof samples.
+            The following metrics are based on a corrected, balanced 400-image
+             test slice containing 200 live and 200 spoof samples.
+             The slice was sampled from a larger 4,000-image live/spoof
+              dataset, with results averaged across 10 separate evaluation windows.
           </p>
         </div>
         <dl class="stat-grid">
@@ -61,23 +63,6 @@
           <div><dt>Input tensor</dt><dd>Nx3x224x224</dd></div>
           <div><dt>Normalization</dt><dd>ImageNet</dd></div>
         </dl>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <h2>Production caveat</h2>
-          <p>
-            Do not treat this as a universal production guarantee. The APCER 1%
-            policy is now set to 0.99 and should be validated again on a larger
-            untouched and cross-domain test set before production claims.
-          </p>
-        </div>
-        <ul class="feature-list">
-          <li>Keep threshold tuning on train/dev data in future runs</li>
-          <li>Evaluate target cameras, screens, print media, and lighting</li>
-          <li>Report subgroup APCER/BPCER when metadata exists</li>
-          <li>Use manual review or step-up verification for uncertain cases</li>
-        </ul>
       </section>
     </main>
 

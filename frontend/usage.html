@@ -53,20 +53,6 @@ result = detector.predict_image(aligned_face_rgb_224)
 print(result.live_probability, result.decision)</code></pre>
       </section>
 
-      <section class="section">
-        <div class="section-head">
-          <h2>Start the API</h2>
-          <p>
-            To run the included Django demo API, use a repo checkout. The backend
-            defaults to the APCER 1% model and falls back to bundled package artifacts
-            if local checkpoint files are not present.
-          </p>
-        </div>
-        <pre><code>git clone https://github.com/yuvrajraina/TinyLiveness.git
-cd TinyLiveness
-pip install -r backend/requirements.txt
-python backend/manage.py runserver</code></pre>
-      </section>
 
       <section class="section">
         <div class="section-head">

@@ -27,23 +27,7 @@
         </p>
       </section>
 
-      <section class="section">
-        <div class="section-head">
-          <h2>Endpoints</h2>
-          <p>Use `model/` for health and policy details, and `predict/` for inference.</p>
-        </div>
-        <div class="endpoint-grid">
-          <div class="endpoint-card">
-            <h3>Model info</h3>
-            <pre><code>GET /api/liveness/model/</code></pre>
-          </div>
-          <div class="endpoint-card">
-            <h3>Predict</h3>
-            <pre><code>POST /api/liveness/predict/
-multipart field: image</code></pre>
-          </div>
-        </div>
-      </section>
+      
 
       <section class="section">
         <div class="section-head">
@@ -80,20 +64,7 @@ multipart field: image</code></pre>
   -F aggregation=p10</code></pre>
       </section>
 
-      <section class="section">
-        <div class="section-head">
-          <h2>Environment settings</h2>
-          <p>Override paths, rate limits, and website access for your deployment.</p>
-        </div>
-        <dl class="stat-grid compact">
-          <div><dt>TINYLIVENESS_MODEL_PATH</dt><dd>Custom ONNX path</dd></div>
-          <div><dt>TINYLIVENESS_POLICY_PATH</dt><dd>Custom JSON policy</dd></div>
-          <div><dt>TINYLIVENESS_RATE_LIMIT_SECONDS</dt><dd>Per-client delay</dd></div>
-          <div><dt>TINYLIVENESS_CORS_ORIGIN</dt><dd>Allowed website origin</dd></div>
-          <div><dt>DJANGO_ALLOWED_HOSTS</dt><dd>Host allowlist</dd></div>
-          <div><dt>DJANGO_DEBUG</dt><dd>Set 0 in production</dd></div>
-        </dl>
-      </section>
+    
     </main>
 
     <footer class="site-footer">
