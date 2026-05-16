@@ -65,6 +65,22 @@ Important caveat: the APCER 1% threshold is the default API policy and is set to
 these metrics as production proof.
 
 
+## Install
+
+Install directly from GitHub:
+
+```bash
+pip install "tinyliveness[onnx] @ git+https://github.com/yuvrajraina/TinyLiveness.git"
+```
+
+Or install from a local clone:
+
+```bash
+git clone https://github.com/yuvrajraina/TinyLiveness.git
+cd TinyLiveness
+pip install -e ".[onnx]"
+```
+
 ## Python Usage
 
 ```python
